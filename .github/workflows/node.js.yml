@@ -41,7 +41,7 @@ jobs:
           username: hoang2005
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/react-app:latest
-            docker stop react-app || true
-            docker rm react-app || true
-            docker run -d -p 3000:80 --name react-app ${{ secrets.DOCKER_USERNAME }}/react-app:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/fe-project:latest
+            docker stop fe-project || true
+            docker rm fe-project || true
+            docker run -d -p 3000:80 --name fe-project ${{ secrets.DOCKER_USERNAME }}/fe-project:latest
