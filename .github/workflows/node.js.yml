@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Frontend
 
 on:
   push:
@@ -25,15 +25,9 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/fe-project ./frontend
 
-      - name: Build BE image
+      - name: Push FE image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/be-project ./backend
-
-      - name: Push FE
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/fe-project
-
-      - name: Push BE
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/be-project
+          docker push ${{ secrets.DOCKER_USERNAME }}/fe-project
 
   deploy:
     needs: build
@@ -49,5 +43,5 @@ jobs:
 
           script: |
             cd project-folder
-            docker-compose pull
-            docker-compose up -d
+            docker pull ${{ secrets.DOCKER_USERNAME }}/fe-project
+            docker-compose up -d frontend
