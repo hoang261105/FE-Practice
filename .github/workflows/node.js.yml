@@ -23,7 +23,7 @@ jobs:
 
       - name: Build FE image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/fe-project ./frontend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/fe-project .
 
       - name: Push FE image
         run: |
